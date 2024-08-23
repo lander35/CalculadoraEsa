@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora média ESA</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-image: url('Portao_das_Armas.jpg');
+            background-size: cover;
+            background-position: center;
+            color: #333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            max-width: 100%;
+            width: 100%;
+            max-width: 400px;
+        }
+
+        h1 {
+            font-size: 24px;
+            margin-bottom: 20px;
+            text-align: center;
+            color: #007BFF;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        input[type="number"] {
+            width: calc(100% - 20px);
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        h2 {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 20px;
+            color: #28a745;
+            visibility: hidden;
+        }
+
+        span#resultado {
+            font-weight: bold;
+            color: #dc3545;
+        }
+
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 20px;
+            }
+
+            input[type="number"] {
+                font-size: 14px;
+                padding: 8px;
+            }
+
+            button {
+                font-size: 14px;
+            }
+
+            h2 {
+                font-size: 18px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>CALCULE A SUA MÉDIA - ESA</h1>
+        <form id="calculadora">
+            <label for="matematica">Matemática:</label>
+            <input type="number" id="matematica" name="matematica" min="0" max="14" required>
+            
+            <label for="portugues">Português:</label>
+            <input type="number" id="portugues" name="portugues" min="0" max="14" required>
+            
+            <label for="historiaGeografia">História e Geografia:</label>
+            <input type="number" id="historiaGeografia" name="historiaGeografia" min="0" max="12" required>
+            
+            <label for="ingles">Inglês:</label>
+            <input type="number" id="ingles" name="ingles" min="0" max="10" required>
+            
+            <button type="button" onclick="calcularResultado()">Calcular</button>
+        </form>
+        <h2 id="resultadoContainer">Resultado: <span id="resultado"></span></h2>
+    </div>
+
+    <script>
+        function calcularResultado() {
+            const matematica = parseFloat(document.getElementById('matematica').value);
+            const portugues = parseFloat(document.getElementById('portugues').value);
+            const historiaGeografia = parseFloat(document.getElementById('historiaGeografia').value);
+            const ingles = parseFloat(document.getElementById('ingles').value);
+
+            if (isNaN(matematica) || isNaN(portugues) || isNaN(historiaGeografia) || isNaN(ingles)) {
+                alert('Por favor, insira valores válidos.');
+                return;
+            }
+
+            const resultado = (matematica / 14 + portugues / 14 + historiaGeografia / 12 + ingles / 10) / 4;
+            const resultadoAjustado = resultado * 10;
+            const resultadoFormatado = resultadoAjustado.toFixed(3).replace('.', ',');
+            
+            document.getElementById('resultado').innerText = resultadoFormatado;
+            document.getElementById('resultadoContainer').style.visibility = 'visible';
+        }
+    </script>
+</body>
+</html>
